@@ -1,3 +1,8 @@
+name: CI_Flash
+
+# Controls when the workflow will run
+on: workflow_dispatch
+
 jobs:
   take-screenshot:
     runs-on: windows-latest
