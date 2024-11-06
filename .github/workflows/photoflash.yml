@@ -9,6 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Take Desktop Screenshot
-        uses: OrbitalOwen/desktop-screenshot-action@v0.1
+        run: powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Clipboard]::SetImage([System.Windows.Forms.ScreenCapture]::CaptureDesktop())"
+      - name: Save Screenshot
+        run: powershell -Command "Add-Type -AssemblyName System.Drawing; [System.Drawing.Bitmap]::FromClipboard().Save('screenshot.png')"
+      - name: Upload Screenshot
+        uses: actions/upload-artifact@v3
         with:
-          file-name: 'desktop.jpg'
+          name: screenshot
+          path: screenshot.png
+      # - uses: actions/checkout@v3
+      # - name: Take Desktop Screenshot
+      #   uses: OrbitalOwen/desktop-screenshot-action@v0.1
+      #   with:
+      #     file-name: 'desktop.jpg'
