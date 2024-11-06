@@ -1,0 +1,9 @@
+jobs:
+  take-screenshot:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Take Desktop Screenshot
+        uses: OrbitalOwen/desktop-screenshot-action@v0.1
+        with:
+          file-name: 'desktop.jpg'
