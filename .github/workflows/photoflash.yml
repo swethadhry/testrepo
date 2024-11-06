@@ -9,14 +9,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Take Desktop Screenshot
-        run: powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Clipboard]::SetImage([System.Windows.Forms.ScreenCapture]::CaptureDesktop())"
-      - name: Save Screenshot
-        run: powershell -Command "Add-Type -AssemblyName System.Drawing; [System.Drawing.Bitmap]::FromClipboard().Save('screenshot.png')"
+        run: powershell -Command "Add-Type -AssemblyName System.Drawing; $screenshot = [System.Drawing.Rectangle]::FromLTRB(0, 0, (Get-Screen).PrimaryScreenWidth, (Get-Screen).PrimaryScreenHeight); $bitmap = [System.Drawing.Bitmap]((Get-Screen).PrimaryScreen.Bounds.Width, (Get-Screen).PrimaryScreen.Bounds.Height); $graphics = $bitmap.GetGraphics(); $graphics.CopyFromScreen($screenshot.Location, System.Drawing.Point::Empty, $screenshot.Size); $bitmap.Save('screenshot.png', [System.Drawing.Imaging.ImageFormat]::Png)"
       - name: Upload Screenshot
         uses: actions/upload-artifact@v3
         with:
           name: screenshot
           path: screenshot.png
+      # - uses: actions/checkout@v3
+      # - name: Take Desktop Screenshot
+      #   run: powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Clipboard]::SetImage([System.Windows.Forms.ScreenCapture]::CaptureDesktop())"
+      # - name: Save Screenshot
+      #   run: powershell -Command "Add-Type -AssemblyName System.Drawing; [System.Drawing.Bitmap]::FromClipboard().Save('screenshot.png')"
+      # - name: Upload Screenshot
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: screenshot
+      #     path: screenshot.png
       # - uses: actions/checkout@v3
       # - name: Take Desktop Screenshot
       #   uses: OrbitalOwen/desktop-screenshot-action@v0.1
