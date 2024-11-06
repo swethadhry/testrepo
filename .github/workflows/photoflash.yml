@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Take Desktop Screenshot
-        run: powershell -Command "Add-Type -AssemblyName System.Drawing; $screenshot = [System.Drawing.Rectangle]::FromLTRB(0, 0, (Get-Screen).PrimaryScreenWidth, (Get-Screen).PrimaryScreenHeight); $bitmap = [System.Drawing.Bitmap]((Get-Screen).PrimaryScreen.Bounds.Width, (Get-Screen).PrimaryScreen.Bounds.Height); $graphics = $bitmap.GetGraphics(); $graphics.CopyFromScreen($screenshot.Location, System.Drawing.Point::Empty, $screenshot.Size); $bitmap.Save('screenshot.png', [System.Drawing.Imaging.ImageFormat]::Png)"
+        run: powershell -Command "Add-Type -AssemblyName System.Drawing; $bitmap = New-Object System.Drawing.Bitmap ([System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Width, [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize.Height); $graphics = [System.Drawing.Graphics]::FromImage($bitmap); $graphics.CopyFromScreen(0, 0, 0, 0, $bitmap.Size); $bitmap.Save(""screenshot.png"", [System.Drawing.Imaging.ImageFormat]::Png); $graphics.Dispose(); $bitmap.Dispose()"
       - name: Upload Screenshot
         uses: actions/upload-artifact@v3
         with:
