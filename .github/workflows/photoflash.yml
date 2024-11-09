@@ -59,7 +59,7 @@ jobs:
                 public static bool SetResolution(int width, int height) {
                     DEVMODE dm = new DEVMODE();
                     dm.dmSize = (short)Marshal.SizeOf(typeof(DEVMODE));
-                    if (0 != EnumDisplaySettings(null, ENUM_CURRENT_SETTINGS, ref dm)) {
+                    if (EnumDisplaySettings(null, ENUM_CURRENT_SETTINGS, ref dm)) {
                         dm.dmPelsWidth = width;
                         dm.dmPelsHeight = height;
                         int iRet = ChangeDisplaySettings(ref dm, CDS_UPDATEREGISTRY);
