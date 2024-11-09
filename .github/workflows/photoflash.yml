@@ -70,6 +70,10 @@ jobs:
             }
           "@
             [Display]::SetResolution(1920, 1080)
+      - name: Open Task Manager
+        run: |
+          Start-Process -FilePath "taskmgr.exe"
+          Start-Sleep -Seconds 5
       - name: Take Desktop Screenshot
         run: |
           Add-Type -AssemblyName System.Windows.Forms
