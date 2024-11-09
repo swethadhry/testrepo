@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: screenshot
-          path: screenshot.png
+          path: ${{ github.workspace }}/screenshot.png
       # - uses: actions/checkout@v3
       # - name: Take Desktop Screenshot
       #   run: powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Clipboard]::SetImage([System.Windows.Forms.ScreenCapture]::CaptureDesktop())"
