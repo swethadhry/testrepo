@@ -8,6 +8,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Print Environment Details
+        run: |
+          Get-ComputerInfo
+          Write-Output "Powershell Version:"
+          Write-Output $PSVersionTable.PSVersion
       - name: Set Screen Resolution
         run: |
           Add-Type -TypeDefinition @"
