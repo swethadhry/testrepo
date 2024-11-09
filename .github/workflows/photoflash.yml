@@ -62,7 +62,7 @@ jobs:
                     if (EnumDisplaySettings(null, ENUM_CURRENT_SETTINGS, ref dm)) {
                         dm.dmPelsWidth = width;
                         dm.dmPelsHeight = height;
-                        int iRet = ChangeDisplaySettings(ref dm, CDS_UPDATEREGISTRY);
+                        int iRet = (int)ChangeDisplaySettings(ref dm, CDS_UPDATEREGISTRY);
                         return iRet == DISP_CHANGE_SUCCESSFUL;
                     }
                     return false;
