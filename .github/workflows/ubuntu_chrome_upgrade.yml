@@ -1,16 +1,12 @@
 name: Upgrade Google Chrome Test
 on:
   workflow_dispatch
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      # - name: Install dependencies
-      #   shell: bash
-      #   run: |
-      #     set -ex
-      #     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      #     sudo apt install ./google-chrome-stable_current_amd64.deb
       - name: Check out repository
         uses: actions/checkout@v3
 
@@ -32,23 +28,30 @@ jobs:
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+          google-chrome --version  # Log Chrome version
 
       - name: Install ChromeDriver
         run: |
+          # Remove any existing ChromeDriver to avoid conflicts
+          sudo rm -f /usr/local/bin/chromedriver
+          
+          # Get the exact Chrome version
           CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
           echo "Detected Chrome version: $CHROME_VERSION"
 
-          # Download ChromeDriver from the updated URL
+          # Download ChromeDriver from the new URL structure
           wget -N https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chromedriver-linux64.zip -O chromedriver.zip
-          unzip chromedriver.zip -d $HOME
-          rm chromedriver.zip
+          
+          # Unzip and move to /usr/local/bin
+          unzip -o chromedriver.zip -d $HOME
           sudo mv -f $HOME/chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
+          rm chromedriver.zip
           
-      - name: Print Google Chrome details
-        shell: bash
+          # Verify the ChromeDriver version
+          chromedriver --version
+          
+      - name: Print Google Chrome and ChromeDriver details
         run: |
           google-chrome --version
           chromedriver --version
-          
-  
