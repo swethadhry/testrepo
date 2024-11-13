@@ -44,6 +44,7 @@ jobs:
           
           # Unzip and move to /usr/local/bin
           unzip -o chromedriver.zip -d $HOME
+          $HOME/chromedriver-linux64 --version
           sudo mv -f $HOME/chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
           rm chromedriver.zip
