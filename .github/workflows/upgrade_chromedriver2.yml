@@ -18,7 +18,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium
+          pip install selenium webdriver_manager
+
+      - name: Upgrade Google Chrome
+        run: |
+          sudo apt –only-upgrade install google-chrome-stable
+
+      - name: Magic of web_driver_manager
+        run: |
+          python -c "from webdriver_manager.chrome import ChromeDriverManager; print(ChromeDriverManager().install())"
 
       # - name: Uninstall existing Google Chrome (if any)
       #   run: |
