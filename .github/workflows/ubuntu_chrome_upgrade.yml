@@ -42,9 +42,13 @@ jobs:
           # Download ChromeDriver from the new URL structure
           wget -N https://storage.googleapis.com/chrome-for-testing-public/$CHROME_VERSION/linux64/chromedriver-linux64.zip -O chromedriver.zip
           
-          # Unzip and move to /usr/local/bin
+          # Unzip and check the ChromeDriver version before moving it
           unzip -o chromedriver.zip -d $HOME
-          $HOME/chromedriver-linux64 --version
+          $HOME/chromedriver-linux64/chromedriver --version  # Print ChromeDriver version from extracted location
+          
+          # Move ChromeDriver to /usr/local/bin
+          sudo mv -f $HOME/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+          
           sudo mv -f $HOME/chromedriver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
           rm chromedriver.zip
