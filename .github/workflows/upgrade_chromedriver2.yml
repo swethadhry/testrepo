@@ -33,3 +33,5 @@ jobs:
           chromedriver --version
           echo "Chrome installation path: ${{ steps.setup-chrome.outputs.chrome-path }}"
           echo "ChromeDriver installation path: ${{ steps.setup-chrome.outputs.chromedriver-path }}"
+          echo "Chrome version: ${{ steps.setup-chrome.outputs.chrome-version }}"
+          echo "ChromeDriver version ${{ steps.setup-chrome.outputs.chromedriver-version }}"
