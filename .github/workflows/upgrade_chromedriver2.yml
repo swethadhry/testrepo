@@ -20,23 +20,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium
 
-      - name: Uninstall existing Google Chrome (if any)
-        run: |
-          sudo apt-get remove --purge google-chrome-stable
-          sudo apt-get autoremove
+      # - name: Uninstall existing Google Chrome (if any)
+      #   run: |
+      #     sudo apt-get remove --purge google-chrome-stable
+      #     sudo apt-get autoremove
 
-      - name: Install google chrome and driver
-        id: setup-chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 'stable'
-          install-chromedriver: true
+      # - name: Install google chrome and driver
+      #   id: setup-chrome
+      #   uses: browser-actions/setup-chrome@v1
+      #   with:
+      #     chrome-version: 'stable'
+      #     install-chromedriver: true
                   
       - name: Print Google Chrome and ChromeDriver details
         run: |
           google-chrome --version
           chromedriver --version
-          echo "Chrome installation path: ${{ steps.setup-chrome.outputs.chrome-path }}"
-          echo "ChromeDriver installation path: ${{ steps.setup-chrome.outputs.chromedriver-path }}"
-          echo "Chrome version: ${{ steps.setup-chrome.outputs.chrome-version }}"
-          echo "ChromeDriver version ${{ steps.setup-chrome.outputs.chromedriver-version }}"
+          # echo "Chrome installation path: ${{ steps.setup-chrome.outputs.chrome-path }}"
+          # echo "ChromeDriver installation path: ${{ steps.setup-chrome.outputs.chromedriver-path }}"
+          # echo "Chrome version: ${{ steps.setup-chrome.outputs.chrome-version }}"
+          # echo "ChromeDriver version ${{ steps.setup-chrome.outputs.chromedriver-version }}"
