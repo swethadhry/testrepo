@@ -1,0 +1,20 @@
+name: Upgrade Google Chrome Test
+on:
+  workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -ex
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install ./google-chrome-stable_current_amd64.deb
+      - name: Print Google Chrome details
+        shell: bash
+        run: |
+          google-chrome --version
+          chromedriver --version
+          
+  
