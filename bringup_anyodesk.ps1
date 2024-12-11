@@ -44,7 +44,7 @@ function Install-AnyDesk {
         # Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--get-id" -Wait
         $output = cmd.exe /c anyodesk_id.bat 2>&1
 
-        $output | ForEach-Object { Write-Object $_ }
+        $output | ForEach-Object { Write-Output $_ }
 
         Write-Host "Installation completed successfully."
     }
