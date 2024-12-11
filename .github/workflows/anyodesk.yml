@@ -11,6 +11,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Open anyodesk
-        shell: powershell
+        shell: pwsh
         run: |
-          .\bringup_anyodesk.ps1
+          powershell -File .\bringup_anyodesk.ps1
