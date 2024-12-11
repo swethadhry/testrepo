@@ -1,0 +1,16 @@
+name: Upgrade Google Chrome Test
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Open anyodesk
+        shell: powershell
+        run: |
+          .\bringup_anyodesk.ps1
