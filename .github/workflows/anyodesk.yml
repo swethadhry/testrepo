@@ -10,6 +10,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
+      - name: Print folder details
+        shell: pwsh
+        run: |
+          Get-ChildItem | Format-Table FullName
+
       - name: Open anyodesk
         shell: pwsh
         run: |
