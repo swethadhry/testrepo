@@ -1,4 +1,4 @@
-name: Upgrade Google Chrome Test
+name: Anyodesk
 on:
   workflow_dispatch
 
