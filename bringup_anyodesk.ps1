@@ -26,7 +26,7 @@ function Install-AnyDesk {
         Write-Output "Install Complete"
         
         # Set AnyDesk password
-        Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--set-password=$Password" -Wait
+        # Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--set-password=$Password" -Wait
         Write-Output "Set password Complete"
 
         # Create a new user account
