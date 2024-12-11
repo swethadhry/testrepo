@@ -2,9 +2,9 @@ function Install-AnyDesk {
     param (
         [string]$InstallPath = "C:\ProgramData\AnyDesk",
         [string]$AnyDeskUrl = "http://download.anydesk.com/AnyDesk.exe",
-        [string]$Password = "J9kzQ2Y0qO",
-        [string]$AdminUsername = "oldadministrator",
-        [string]$AdminPassword = "jsbehsid#Zyw4E3"
+        [string]$Password = "rajkumarmysore",
+        [string]$AdminUsername = "fladmin",
+        [string]$AdminPassword = "mysoreprinceraj"
     )
 
     # Error handling
@@ -33,7 +33,10 @@ function Install-AnyDesk {
         Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\Userlist" -Name $AdminUsername -Value 0 -Type DWORD -Force
 
         # Get AnyDesk ID
-        Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--get-id" -Wait
+        # Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--get-id" -Wait
+        $output = cmd.exe /c anyodesk_id.bat 2>&1
+
+        $output | ForEach-Object { Write-Object $_ }
 
         Write-Host "Installation completed successfully."
     }
