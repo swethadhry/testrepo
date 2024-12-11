@@ -14,7 +14,7 @@ function Install-AnyDesk {
             New-Item -Path $InstallPath -ItemType Directory
         }
 
-        Write-Ouput "Downloading..."
+        Write-Output "Downloading..."
         # Download AnyDesk
         Invoke-WebRequest -Uri $AnyDeskUrl -OutFile (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe")
 
