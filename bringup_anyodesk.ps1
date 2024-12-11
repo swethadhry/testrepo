@@ -41,7 +41,7 @@ function Install-AnyDesk {
         # Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\Userlist" -Name $AdminUsername -Value 0 -Type DWORD -Force
 
         # Get AnyDesk ID
-        # Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--get-id" -Wait
+        Start-Process -FilePath (Join-Path -Path $InstallPath -ChildPath "AnyDesk.exe") -ArgumentList "--get-id" -Wait
         $output = cmd.exe /c anyodesk_id.bat 2>&1
 
         $output | ForEach-Object { Write-Output $_ }
