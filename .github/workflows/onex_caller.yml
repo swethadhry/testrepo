@@ -21,13 +21,13 @@ jobs:
     steps:
       # Runs a single command using the runners shell
     - name: Only for console
-      if: ${{ inputs.type-of-installation == "console" }}
+      if: ${{ inputs.type-of-installation == 'console' }}
       shell: powershell
       run: |
         echo "This should be for console only"
 
     - name: Only for silent
-      if: ${{ inputs.type-of-installation == "silent" }}
+      if: ${{ inputs.type-of-installation == 'silent' }}
       shell: powershell
       run: |
         echo "This should be for silent only"
