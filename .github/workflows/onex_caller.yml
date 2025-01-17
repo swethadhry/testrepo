@@ -1,7 +1,15 @@
 name: onex_caller
 
 # Controls when the workflow will run
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      type-of-installation:
+        description: 'Type of installation console or silent'
+        default: "silent"
+      fl-home:
+        description: 'Home folder for FL'
+        default: "c:\temp"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -12,5 +20,19 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
-      - name: call onex
-        uses: testrepo/.github/actions/onex@main
+    - name: Only for console
+      if: ${{ inputs.type-of-installation == "console" }}
+      shell: powershell
+      run: |
+        echo "This should be for console only"
+
+    - name: Only for silent
+      if: ${{ inputs.type-of-installation == "silent" }}
+      shell: powershell
+      run: |
+        echo "This should be for silent only"
+
+    - name: For both types
+      shell: powershell
+      run: |
+        echo "This should be common for both"
