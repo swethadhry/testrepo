@@ -1,0 +1,31 @@
+name: 'OneX action'
+description: 'This is OneX action'
+
+inputs:
+  type-of-installation:
+    description: 'Type of installation console or silent'
+    default: "silent"
+  fl-home:
+    description: 'Home folder for FL'
+    default: "c:\temp"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Only for console
+      if: ${{ inputs.type-of-installation == "console" }}
+      shell: powershell
+      run: |
+        echo "This should be for console only"
+
+    - name: Only for silent
+      if: ${{ inputs.type-of-installation == "silent" }}
+      shell: powershell
+      run: |
+        echo "This should be for silent only"
+
+    - name: For both types
+      shell: powershell
+      run: |
+        echo "This should be common for both"
+        
