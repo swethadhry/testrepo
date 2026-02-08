@@ -19,7 +19,10 @@ jobs:
         run: |
           python --version
           python -m pip install --upgrade pip
-          pip install pytest pytest-dependency
+          # Downgrade setuptools temporarily to handle the legacy build process
+          pip install pytest
+          python -m pip install "setuptools<70.0.0"
+          pip install pytest-dependency
 
       - name: Run tests
         run: |
